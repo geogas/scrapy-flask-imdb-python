@@ -12,13 +12,14 @@ aim to get information for movies we are interesting in. This information
 is persistenly stored in the mongodb database. Given that a movie can
 be represented as a document, mongodb was considered the best match for
 that use case. The second subproject corresponds to a web application
-being responsible for rendering the data we have gathered from imdb.
+being responsible for rendering the data we gathered from imdb.
 
 -----------------
 | Prerequisites |
 -----------------
 Before you start playing around with the projects make sure you have
 already installed the dependencies. Namely:
+
 * scrapy
 * mongodb
 * mongoengine
@@ -40,7 +41,7 @@ $ db.movies.ensureIndex( {"name":1} )
 ---------------
 | scrapy_imdb |
 ---------------
-Location: scrapy_imdb.
+Location: scrapy_imdb
 
 Goal of our scraping application is to fetch information about movies.
 For example: name, rating, genre, cast, etc. We specify a url that
@@ -60,8 +61,8 @@ related information in a human friendly manner. This application is
 backed up by a server provided by the flask framework. Server listens
 for user requests and dispatces these requests to the corresponding views. 
 A sidebar allowing for predefined queries exists. The user can also
-issue a request to the server by typing a movie's name (or part of it
-a rating out of 10, a desired genre, or a specific year. 
+issue a request to the server by typing a movie's name (or part of it,
+a rating (1-10), a desired genre (e.g. crime), or a specific year. 
 
 ----------------------------------
 | Filling out mongodb collection |
@@ -92,7 +93,7 @@ http://localhost:5000/index
 -----------
 | Cleanup |
 ----------
-Execute the following command for dropping the movies collection:
+Execute the following commands for dropping the movies collection:
 
 $ mongo
 $ use imdb
