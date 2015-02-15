@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My IMDB</title>
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body OnLoad="document.searchform.text.focus();">
+
+    <header>My IMDB</header>
+
+    <div id="main">
+
+        <div id="nav">
+            <div id="naventries">
+                <ul>
+                    <li><a href="/top/10">Top 10</a></li>
+                    <li><a href="/top/20">Top 20</a></li>
+                    <li><a href="/recent">Most Recent</a></li>
+                    <li><a href="/dontwatch">Don't Watch</a></li>
+                    <li><a href="/showall">Show All</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="container">
+
+            <div id="tfheader">
+                <form name="searchform" id="tfsearch" method="POST" action="/search">
+                    <input type="text" class="tfinput" name="text" size="50" maxlength="200" placeholder="name, rating, genre, year">
+                    <input type="submit" value=">" class="tfbutton">
+                </form>
+                <div class="tfclear"></div>
+            </div>
+
+            {% block content %}
+            {% endblock %} 
+
+        </div>
+
+        <div id="aside"></div>
+
+    </div>
+
+    <footer>scrappy - mongodb - flask</footer>
+    
+  </body>
+</html>

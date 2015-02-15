@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div id="entries">
+        <ul>
+        {% for movie in movies %}
+            <li>
+            <div class="name-year"> {{movie.name}} -
+                <a href="/produced/{{movie.produced.year}}">{{movie.produced.year}}</a>
+            </div>
+
+            <div class="rating-base">
+                <a href="/rating/{{movie.rating}}">{{movie.rating}}</a>
+                <span>/ 10 - </span>
+
+                <span>
+                    {% for genre in movie.genre %}
+                    <a href="/genre/{{genre}}">{{genre}}</a>
+                        {% if genre != movie.genre[-1] %}
+                            |
+                        {% endif %}
+                    {% endfor %} 
+                </span>
+            </div>
+
+            <div class="description"> {{ movie.description }}</div>
+
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %} 
+
