@@ -53,6 +53,7 @@ class ImdbSpider(Spider):
             sel = Selector(response)
             item = ImdbItem()
 
+            item['movie_id'] = response.request.url.split('/')[4]
             item['img_src'] = self.get_img_src(sel)
             item['name'] = self.get_movie_name(sel)
             item['produced'] = self.get_production_year(sel)

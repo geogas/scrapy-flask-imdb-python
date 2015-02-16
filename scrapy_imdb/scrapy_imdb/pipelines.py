@@ -35,10 +35,16 @@ class ImdbPipeline(object):
 
     """
     This function is responsible for storing the movie items in the
-    collection.
+    collection. We do not allow duplicates. That is ensured by the
+    movie_id identifier, which is uniquely assigned to movies by imdb.
     """
     def process_item(self, item, spider):
         item_dict = dict(item)
+
+        # before an insertion takes place we check if the movie
+        # already exists
+        if self.collection.find( {"movie_id": item_dict["movie_id"]} ).count() > 0:
+            return item
 
         # string representation <-> datetime transformation
         item_dict['released'] = self.get_released(item_dict['released'])

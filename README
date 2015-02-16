@@ -22,6 +22,7 @@ already installed the dependencies. Namely:
 
 * scrapy
 * mongodb
+* pymongo
 * mongoengine
 * flask
 * flask-script
@@ -35,6 +36,7 @@ Create the imdb database:
 $ use imdb
 
 Adding indexes for performance reasons:
+$ db.movies.ensureIndex( {"movie_id":1} )
 $ db.movies.ensureIndex( {"rating":1} )
 $ db.movies.ensureIndex( {"genre":1} )
 $ db.movies.ensureIndex( {"produced":1} )

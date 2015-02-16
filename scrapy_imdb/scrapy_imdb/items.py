@@ -6,6 +6,8 @@ This class keeps all the information we need to capture for a
 movie.
 """
 class ImdbItem(scrapy.Item):
+    # unique identifier assigned by imdb
+    movie_id = Field()
     img_src = Field()
     name = Field()
     produced = Field()
