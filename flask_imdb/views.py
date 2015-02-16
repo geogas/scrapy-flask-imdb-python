@@ -7,29 +7,29 @@ from datetime import datetime
 # deals with movies should provide access to its genre, its rating, etc.
 movies = Blueprint('movies', __name__, template_folder='templates')
 
-"""
-Index page of the application. Also / is using that class. In this case
-no movies are depicted, only an image.
-"""
-class Index(MethodView):
 
+class Index(MethodView):
+    """
+    Index page of the application. Also / is using that class. In this case
+    no movies are depicted, only an image.
+    """
     def get(self):
         return render_template('index.html')
 
-"""
-Retrieves and returns all the available movies in the mongodb collection.
-"""
-class ShowAllView(MethodView):
 
+class ShowAllView(MethodView):
+    """
+    Retrieves and returns all the available movies in the mongodb collection.
+    """
     def get(self):
         movies = Movies.objects.all()
         return render_template('list.html', movies=movies)
 
-"""
-Returns the movies having a specific rating.
-"""
-class RatingView(MethodView):
 
+class RatingView(MethodView):
+    """
+    Returns the movies having a specific rating.
+    """
     def get(self, rating=None):
         if rating is None:
             movies = Movies.objects.all()
@@ -38,21 +38,21 @@ class RatingView(MethodView):
 
         return render_template('list.html', movies=movies)
 
-"""
-Seaches in an SQL-like manner for movies containing a specific pattern.
-"""
-class NameLikeView(MethodView):
 
+class NameLikeView(MethodView):
+    """
+    Seaches in an SQL-like manner for movies containing a specific pattern.
+    """
     def get(self, name_like=None):
         movies = Movies.objects(name__icontains=name_like)
         return render_template('list.html', movies=movies)
 
-"""
-Class responsible for retrieving all movies belonging to a specified
-genre.
-"""
-class GenreView(MethodView):
 
+class GenreView(MethodView):
+    """
+    Class responsible for retrieving all movies belonging to a specified
+    genre.
+    """
     def get(self, genre=None):
         if genre is None:
             movies = Movies.objects.all()
@@ -61,57 +61,57 @@ class GenreView(MethodView):
 
         return render_template('list.html', movies=movies)
 
-"""
-Renders movies being produced in a specified year.
-"""
-class ProducedView(MethodView):
 
+class ProducedView(MethodView):
+    """
+    Renders movies being produced in a specified year.
+    """
     def get(self, year):
         movies = Movies.objects(produced=datetime.strptime(year, "%Y"))
         return render_template('list.html', movies=movies)
 
-"""
-Results in a bunch of movies that were produced recently. I.e. 5 years. 
-"""
-class RecentView(MethodView):
 
+class RecentView(MethodView):
+    """
+    Results in a bunch of movies that were produced recently. I.e. 5 years.
+    """
     def get(self):
-        target_year = datetime.now().year - 8 
+        target_year = datetime.now().year - 8
         movies = Movies.objects(produced__gte=datetime.strptime(str(target_year), "%Y"))
         return render_template('list.html', movies=movies)
 
-"""
-Finds movies whose rating is below a threshold. I.e. 6/10.
-"""
-class DontWatchView(MethodView):
 
+class DontWatchView(MethodView):
+    """
+    Finds movies whose rating is below a threshold. I.e. 6/10.
+    """
     def get(self):
         movies = Movies.objects(rating__lt=9)
         return render_template('list.html', movies=movies)
 
-"""
-This class retrieves the top-k movies existing in the database. K is
-is passed as a parameter. The actual number of existing movies is
-found and based on that and the value of K we figure out which movies
-should be displayed.
-"""
-class TopView(MethodView):
 
+class TopView(MethodView):
+    """
+    This class retrieves the top-k movies existing in the database. K is
+    is passed as a parameter. The actual number of existing movies is
+    found and based on that and the value of K we figure out which movies
+    should be displayed.
+    """
     def get(self, percentage):
         cnt = Movies.objects().count()
         limit = cnt * int(percentage) / float(100)
-        movies = Movies.objects[:round(limit)] 
+        movies = Movies.objects[:int(round(limit, 0))]
         return render_template('list.html', movies=movies)
 
-"""
-This class implements the logic behind the search form. A value that
-could be either numerix or text is passed to the post function. We
-firsly treat this value as a number. In case a ValueError is raised
-(value is not numeric) we continue our searching on text fields. The
-order we follow is: genre, duration, produced, name.
-"""
-class SearchView(MethodView):
 
+class SearchView(MethodView):
+    """
+    This class implements the logic behind the search form. A value that
+    could be either numerix or text is passed to the post function. We
+    firsly treat this value as a number. In case a ValueError is raised
+    (value is not numeric) we continue our searching on text fields. The
+    order we follow is: genre, duration, produced, name.
+    """
     def post(self):
         text = request.form['text']
 
@@ -119,7 +119,7 @@ class SearchView(MethodView):
         movies = []
         try:
             movies = Movies.objects(produced=datetime.strptime(text, "%Y"))
-            
+
         except ValueError:
             # still numbers
             try:
@@ -133,11 +133,11 @@ class SearchView(MethodView):
             # text is not numeric
             except ValueError:
 
-                #search by movie name
+                # search by movie name
                 movies = Movies.objects(name__icontains=text)
 
                 if not movies:
-                    #text is genre
+                    # text is genre
                     movies = Movies.objects(genre__iexact=text)
 
         return render_template('list.html', movies=movies)
@@ -168,4 +168,3 @@ movies.add_url_rule('/recent/', view_func=RecentView.as_view('recent_view'))
 movies.add_url_rule('/dontwatch/', view_func=DontWatchView.as_view('dont_watch_view'))
 
 movies.add_url_rule('/showall/', view_func=ShowAllView.as_view('show_all_view'))
-

@@ -1,3 +1,4 @@
 # compiled source
 #################
 *.pyc
+.vagrant
