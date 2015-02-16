@@ -1,10 +1,10 @@
 -----------------------
-| Project Description | 
+| Project Description |
 -----------------------
 That is a simple Python project illustrating the use of the following:
 
 1) Scrapy (scraping and crawling framework)
-2) Flask (micro web development framework based on Werkzeug) 
+2) Flask (micro web development framework based on Werkzeug)
 
 The project is split up into two subprojects located in the respective
 folders. We firstly scrape the Internet Movie Database (imdb) with the
@@ -24,7 +24,9 @@ already installed the dependencies. Namely:
 * mongodb
 * mongoengine
 * flask
-* flask-script 
+* flask-script
+
+Or simply install the python dependencies with 'pip install -r requirements.txt'
 
 -----------------
 | Mongodb setup |
@@ -49,7 +51,7 @@ corresponds to a list assembled by imdb itself, or by a user. E.g.
 top-250 movies (http://www.imdb.com/chart/top). Then the scrapy spider
 parses this list and for every movie existing there it acquires information.
 This information is later being stored to imdb.movies collection of mongodb
-database by the implemented pipeline. 
+database by the implemented pipeline.
 
 --------------
 | flask_imdb |
@@ -59,16 +61,16 @@ Location: flask_imdb
 A web application was implemented to present the aforementioned movie
 related information in a human friendly manner. This application is
 backed up by a server provided by the flask framework. Server listens
-for user requests and dispatces these requests to the corresponding views. 
+for user requests and dispatces these requests to the corresponding views.
 A sidebar allowing for predefined queries exists. The user can also
 issue a request to the server by typing a movie's name (or part of it,
-a rating (1-10), a desired genre (e.g. crime), or a specific year. 
+a rating (1-10), a desired genre (e.g. crime), or a specific year.
 
 ----------------------------------
 | Filling out mongodb collection |
 ----------------------------------
 $ cd scrappy_flask_imdb/scrappy_imdb
-$ scrapy crawl imdb 
+$ scrapy crawl imdb
 
 This opetation will take some time and after its execution a number of
 movies will exist in the movies collection of the imdb mongodb.
@@ -102,7 +104,7 @@ $ db.movies.drop()
 For dropping the whole imdb database please execute:
 
 $ mongo
-$ use imdb 
+$ use imdb
 $ db.dropDatabase()
 
 
