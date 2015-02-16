@@ -1,0 +1,4 @@
+Flask==0.10.1
+Flask-Script==2.0.5
+mongoengine==0.8.7
+Scrapy==0.24.4
