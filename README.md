@@ -33,8 +33,6 @@ every movie existing there it acquires information. This information is later
 being stored to imdb.movies collection of mongodb database by the implemented
 pipeline.
 
-
-
 ###flask\_imdb
 
 Location: flask\_imdb
@@ -49,10 +47,10 @@ crime), or a specific year.
 
 Filling out mongodb collection
 ------------------------------
-'''
+```
 cd scrappy\_flask\_imdb/scrappy\_imdb
 scrapy crawl imdb
-'''
+```
 
 This opetation will take some time and after its execution a number of movies
 will exist in the movies collection of the imdb mongodb.
@@ -63,30 +61,30 @@ Once spider and pipeline have completed, the server can be started and content
 can be served to the user via the web browser. In order to start the server
 simply type:
 
-'''
+```
 cd scrappy\_flask\_imdb/flask\_imdb/
 python manage.py runserver
-'''
+```
 
 Check web page
 --------------
 Open your preferred browser and type in the location bar:
-'''
+```
 http://localhost:5000/index
-'''
+```
 
 Cleanup
 -------
 Execute the following commands for dropping the movies collection:
-'''javascript
+```javascript
 mongo
 use imdb
 db.movies.drop()
-'''
+```
 
 For dropping the whole imdb database please execute:
-'''javascript
+```javascript
 mongo
 use imdb
 db.dropDatabase()
-'''
+```
