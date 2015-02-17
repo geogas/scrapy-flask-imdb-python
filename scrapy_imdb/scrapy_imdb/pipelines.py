@@ -1,6 +1,6 @@
 from pymongo import Connection
 from scrapy.conf import settings
-from datetime import strptime, now
+from datetime import datetime
 
 
 class ImdbPipeline(object):
@@ -32,7 +32,7 @@ class ImdbPipeline(object):
         elif len(released_list) == 1:
             released_str = "1 January " + released_str
 
-        return strptime(released_str, "%d %B %Y")
+        return datetime.strptime(released_str, "%d %B %Y")
 
     def process_item(self, item, spider):
         """
@@ -51,10 +51,10 @@ class ImdbPipeline(object):
         item_dict['released'] = self.get_released(item_dict['released'])
 
         # transform string representation to datetime object
-        item_dict['produced'] = strptime(item_dict['produced'], "%Y")
+        item_dict['produced'] = datetime.strptime(item_dict['produced'], "%Y")
 
         # time of insertion
-        item_dict['inserted'] = now()
+        item_dict['inserted'] = datetime.now()
 
         self.collection.insert(item_dict)
 
