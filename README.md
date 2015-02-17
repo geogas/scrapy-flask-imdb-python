@@ -13,10 +13,11 @@ document, mongodb was considered the best match for that use case. The second
 subproject corresponds to a web application being responsible for rendering the
 data we gathered from imdb.
 
-Prerequisites
+Installation
 -------------
-Before you start playing around with the projects make sure you have already
-installed the dependencies.
+If you have [Vagrant](https://www.vagrantup.com/) installed you can simply run `vagrant up` to get a running environment.
+
+To manually install the prerequisites on a *ubuntu/debian* system you can type the following in your shell.
 ```bash
 # install mongo and python 
 sudo apt-get install -y mongodb python-dev python-pip python-lxml
@@ -30,6 +31,7 @@ Mongodb setup
 -------------
 ###scrapy\_imdb
 **Location: scrapy\_imdb** 
+
 Goal of our scraping application is to fetch information about movies. For
 example: name, rating, genre, cast, etc. We specify a url that corresponds to a
 list assembled by imdb itself, or by a user. E.g. top-250 movies
@@ -39,7 +41,8 @@ being stored to imdb.movies collection of mongodb database by the implemented
 pipeline.
 
 ###flask\_imdb
-**Location: flask\_imdb** 
+**Location: flask\_imdb**
+
 A web application was implemented to present the aforementioned movie related
 information in a human friendly manner. This application is backed up by a
 server provided by the flask framework. Server listens for user requests and
@@ -72,9 +75,7 @@ python manage.py runserver
 Check web page
 --------------
 Open your preferred browser and type in the location bar:
-```
 http://localhost:5000/index
-```
 
 Cleanup
 -------
