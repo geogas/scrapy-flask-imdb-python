@@ -76,7 +76,7 @@ class RecentView(MethodView):
     Results in a bunch of movies that were produced recently. I.e. 5 years.
     """
     def get(self):
-        target_year = datetime.now().year - 8
+        target_year = datetime.now().year - 5
         movies = Movies.objects(produced__gte=datetime.strptime(str(target_year), "%Y"))
         return render_template('list.html', movies=movies)
 
@@ -86,7 +86,7 @@ class DontWatchView(MethodView):
     Finds movies whose rating is below a threshold. I.e. 6/10.
     """
     def get(self):
-        movies = Movies.objects(rating__lt=9)
+        movies = Movies.objects(rating__lt=8.2)
         return render_template('list.html', movies=movies)
 
 

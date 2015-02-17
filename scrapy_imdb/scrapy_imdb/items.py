@@ -1,11 +1,14 @@
-import scrapy
-from scrapy.item import Item, Field
+from scrapy import Item
+from scrapy.item import Field
 
-"""
-This class keeps all the information we need to capture for a
-movie.
-"""
-class ImdbItem(scrapy.Item):
+
+class ImdbItem(Item):
+    """
+    This class keeps all the information we need to capture for a
+    movie.
+    """
+    # unique identifier assigned by imdb
+    movie_id = Field()
     img_src = Field()
     name = Field()
     produced = Field()
