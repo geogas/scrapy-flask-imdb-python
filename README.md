@@ -29,7 +29,7 @@ mongo /vagrant/scripts/create_index.js
 Mongodb setup
 -------------
 ###scrapy\_imdb
-Location: scrapy\_imdb
+**Location: scrapy\_imdb** 
 Goal of our scraping application is to fetch information about movies. For
 example: name, rating, genre, cast, etc. We specify a url that corresponds to a
 list assembled by imdb itself, or by a user. E.g. top-250 movies
@@ -39,7 +39,7 @@ being stored to imdb.movies collection of mongodb database by the implemented
 pipeline.
 
 ###flask\_imdb
-Location: flask\_imdb
+**Location: flask\_imdb** 
 A web application was implemented to present the aforementioned movie related
 information in a human friendly manner. This application is backed up by a
 server provided by the flask framework. Server listens for user requests and
