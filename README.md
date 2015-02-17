@@ -23,11 +23,11 @@ To manually install the prerequisites on a *ubuntu/debian* system you can type t
 sudo apt-get install -y mongodb python-dev python-pip python-lxml
 # install python packages
 sudo pip install -r /vagrant/requirements.txt
-# create mongo index for fasre search results
+# create mongo index for speeding up queries
 mongo /vagrant/scripts/create_index.js
 ```
 
-Mongodb setup
+Components
 -------------
 ###scrapy\_imdb
 **Location: scrapy\_imdb** 
@@ -50,6 +50,7 @@ dispatces these requests to the corresponding views. A sidebar allowing for
 predefined queries exists. The user can also issue a request to the server by
 typing a movie's name (or part of it, a rating (1-10), a desired genre (e.g.
 crime), or a specific year.
+
 
 Filling out mongodb collection
 ------------------------------
