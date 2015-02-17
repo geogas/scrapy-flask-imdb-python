@@ -1,3 +1,5 @@
 # compiled source
 #################
 *.pyc
+.vagrant
+.DS_Store

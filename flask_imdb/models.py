@@ -1,10 +1,10 @@
-import datetime
 from flask_imdb import db
 
-"""
-Class corresponding to the "movies" mongodb collection.
-"""
+
 class Movies(db.Document):
+    """
+    Class corresponding to the "movies" mongodb collection.
+    """
     rating = db.FloatField(required=True)
     rating_cnt = db.IntField(required=True)
     name = db.StringField(required=True)
@@ -20,7 +20,5 @@ class Movies(db.Document):
     # definition of default ordering and desired indexes
     meta = {
         'ordering': ['-rating'],
-        'indexes': [
-             'genre', 'produced', '-rating'     
-        ]
+        'indexes': ['genre', 'produced', '-rating']
     }
