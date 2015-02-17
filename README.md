@@ -17,14 +17,19 @@ Prerequisites
 -------------
 Before you start playing around with the projects make sure you have already
 installed the dependencies.
+```bash
+# install mongo and python 
+sudo apt-get install -y mongodb python-dev python-pip python-lxml
+# install python packages
+sudo pip install -r /vagrant/requirements.txt
+# create mongo index for fasre search results
+mongo /vagrant/scripts/create_index.js
+```
 
 Mongodb setup
 -------------
-
 ###scrapy\_imdb
-
 Location: scrapy\_imdb
-
 Goal of our scraping application is to fetch information about movies. For
 example: name, rating, genre, cast, etc. We specify a url that corresponds to a
 list assembled by imdb itself, or by a user. E.g. top-250 movies
@@ -34,9 +39,7 @@ being stored to imdb.movies collection of mongodb database by the implemented
 pipeline.
 
 ###flask\_imdb
-
 Location: flask\_imdb
-
 A web application was implemented to present the aforementioned movie related
 information in a human friendly manner. This application is backed up by a
 server provided by the flask framework. Server listens for user requests and
@@ -47,7 +50,7 @@ crime), or a specific year.
 
 Filling out mongodb collection
 ------------------------------
-```
+```bash
 cd scrappy\_flask\_imdb/scrappy\_imdb
 scrapy crawl imdb
 ```
@@ -61,7 +64,7 @@ Once spider and pipeline have completed, the server can be started and content
 can be served to the user via the web browser. In order to start the server
 simply type:
 
-```
+```bash
 cd scrappy\_flask\_imdb/flask\_imdb/
 python manage.py runserver
 ```
@@ -77,14 +80,10 @@ Cleanup
 -------
 Execute the following commands for dropping the movies collection:
 ```javascript
-mongo
-use imdb
-db.movies.drop()
+mongo imdb --eval "db.movies.drop()"
 ```
 
 For dropping the whole imdb database please execute:
 ```javascript
-mongo
-use imdb
-db.dropDatabase()
+mongo imdb --eval "db.dropDatabase()"
 ```
