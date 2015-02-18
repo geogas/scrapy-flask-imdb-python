@@ -22,9 +22,9 @@ To manually install the prerequisites on a *ubuntu/debian* system you can type t
 # install mongo and python 
 sudo apt-get install -y mongodb python-dev python-pip python-lxml
 # install python packages
-sudo pip install -r /vagrant/requirements.txt
+sudo pip install -r requirements.txt
 # create mongo index for speeding up queries
-mongo /vagrant/scripts/create_index.js
+mongo scripts/create_index.js
 ```
 
 Components
