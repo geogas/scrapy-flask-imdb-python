@@ -13,6 +13,11 @@ document, mongodb was considered the best match for that use case. The second
 subproject corresponds to a web application being responsible for rendering the
 data we gathered from imdb.
 
+Screenshot
+----------
+
+![Screenshot](https://cloud.githubusercontent.com/assets/4787612/6255078/a28149ec-b7ad-11e4-9acd-11e64e171521.png?raw=true)
+
 Installation
 -------------
 If you have [Vagrant](https://www.vagrantup.com/) installed you can simply run `vagrant up` to get a running environment.
