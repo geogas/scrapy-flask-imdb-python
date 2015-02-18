@@ -5,6 +5,7 @@ class Movies(db.Document):
     """
     Class corresponding to the "movies" mongodb collection.
     """
+    movie_id = db.StringField(required=True)
     rating = db.FloatField(required=True)
     rating_cnt = db.IntField(required=True)
     name = db.StringField(required=True)

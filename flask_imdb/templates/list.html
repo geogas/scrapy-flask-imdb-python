@@ -6,7 +6,7 @@
         <ul>
         {% for movie in movies %}
             <li>
-            <div class="name-year"> {{movie.name}} -
+            <div class="name-year"> <a href="http://www.imdb.com/title/{{movie.movie_id}}/">{{movie.name}}</a> -
                 <a href="/produced/{{movie.produced.year}}">{{movie.produced.year}}</a>
             </div>
 
@@ -20,7 +20,7 @@
                         {% if genre != movie.genre[-1] %}
                             |
                         {% endif %}
-                    {% endfor %} 
+                    {% endfor %}
                 </span>
             </div>
 
@@ -31,5 +31,5 @@
         </ul>
     </div>
 
-{% endblock %} 
+{% endblock %}
 
