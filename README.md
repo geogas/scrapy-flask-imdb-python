@@ -18,7 +18,7 @@ Screenshots
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/4787612/6255230/d544a9e0-b7ae-11e4-8795-e793f5e9fb99.png?raw=true)
 
-![Screenshot](https://cloud.githubusercontent.com/assets/4787612/6255078/a28149ec-b7ad-11e4-9acd-11e64e171521.png?raw=true)
+![Screenshot](https://cloud.githubusercontent.com/assets/4787612/6428360/f57e797c-bf9f-11e4-985c-051519f072bd.png?raw=true)
 
 Installation
 -------------
